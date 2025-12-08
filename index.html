@@ -9,38 +9,135 @@
     <!-- Google Fonts: Prompt and Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'prompt': ['Prompt', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'mint': {
+                            50: '#f0fdf7',
+                            100: '#dcfce9',
+                            200: '#bbf7d7',
+                            300: '#7ED4AD',
+                            400: '#5FB892',
+                            500: '#4DA47D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .mockup-image {
+                @apply w-full h-full object-cover;
+            }
+            
+            .modal {
+                @apply fixed inset-0 z-[1000] overflow-auto;
+                background-color: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(5px);
+                display: none;
+            }
+            
+            .modal.show {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes slideUp {
+                from {
+                    transform: translateY(50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            .modal-content {
+                animation: slideUp 0.3s ease;
+            }
+            
+            .lightbox {
+                @apply fixed inset-0 z-[2000] overflow-hidden;
+                background-color: rgba(0, 0, 0, 0.95);
+                display: none;
+            }
+            
+            .lightbox.show {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+            
+            .lightbox-image {
+                @apply max-w-full max-h-full object-contain;
+                animation: zoomIn 0.3s ease;
+            }
+            
+            @keyframes zoomIn {
+                from {
+                    transform: scale(0.8);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            .gallery-item {
+                @apply cursor-pointer;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="font-prompt bg-gray-50">
 
     <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="container hero-content">
-            <h1 class="hero-title">Lily Chatbot</h1>
-            <p class="hero-subtitle">พื้นที่ปลอดภัยสำหรับทุกความรู้สึก</p>
-            <div class="mockup-zone">
-                <div class="mockup-placeholder">
-                    <img src="./assets/Gemini_Generated_Image_bn2otcbn2otcbn2o.png" alt="Mockup" class="mockup-image">
+    <header class="relative bg-gradient-to-br from-mint-300 via-mint-400 to-mint-500 text-white py-20 overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-white rounded-full"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Lily Chatbot</h1>
+                <p class="text-2xl md:text-3xl font-light mb-12">พื้นที่ปลอดภัยสำหรับทุกความรู้สึก</p>
+                <div class="max-w-md mx-auto">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-4 shadow-2xl">
+                        <img src="./assets/Gemini_Generated_Image_bn2otcbn2otcbn2o.png" alt="Mockup" class="w-full h-auto rounded-2xl">
+                    </div>
                 </div>
             </div>
-            <br>
         </div>
-        <div class="hero-bg-shape"></div>
     </header>
 
     <!-- Project Origin & Importance -->
-    <section class="section origin-section">
-        <div class="container">
-            <h2 class="section-title">ที่มาและความสำคัญ</h2>
-            <div class="content-box mint-card">
-                <div class="text-content">
-                    <p>
+    <section class="py-16 md:py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">ที่มาและความสำคัญ</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-mint-100 to-mint-200 rounded-3xl p-8 md:p-10 shadow-lg">
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
                         ภาวะซึมเศร้าเป็นปัญหาสุขภาพจิตระดับโลกกระทบผู้คนกว่า 280 ล้านคน
                         แต่หลายคนยังขาดช่องทางการเข้าถึงคำปรึกษาและความช่วยเหลือที่สะดวก ปลอดภัย และทันท่วงที
                     </p>
@@ -50,110 +147,108 @@
     </section>
 
     <!-- Expected Benefits -->
-    <section class="section benefits-section">
-        <div class="container">
-            <h2 class="section-title">ประโยชน์ที่คาดว่าจะได้รับ</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="check-icon">✔</div>
-                    <p>เข้าถึงข้อมูลสุขภาพจิตสะดวก รวดเร็ว</p>
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">ประโยชน์ที่คาดว่าจะได้รับ</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
+                    <p class="text-gray-700 text-lg">เข้าถึงข้อมูลสุขภาพจิตสะดวก รวดเร็ว</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="check-icon">✔</div>
-                    <p>ลดความรู้สึกโดดเดี่ยวของผู้ใช้งาน</p>
+                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
+                    <p class="text-gray-700 text-lg">ลดความรู้สึกโดดเดี่ยวของผู้ใช้งาน</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="check-icon">✔</div>
-                    <p>เชื่อมต่อผู้เชี่ยวชาญได้ทันทีในภาวะวิกฤต กับสายด่วน 1323</p>
+                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
+                    <p class="text-gray-700 text-lg">เชื่อมต่อผู้เชี่ยวชาญได้ทันทีในภาวะวิกฤต กับสายด่วน 1323</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Technologies Used -->
-    <section class="section tech-section">
-        <div class="container">
-            <h2 class="section-title">เทคโนโลยีที่ใช้</h2>
-            <div class="tech-categories">
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">เทคโนโลยีที่ใช้</h2>
+            
+            <div class="max-w-6xl mx-auto space-y-8">
                 <!-- Frontend -->
-                <div class="tech-category">
-                    <h3 class="category-title">Frontend</h3>
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" class="tech-logo">
-                            <span>Next.js</span>
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
+                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Frontend</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Next.js</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" class="tech-logo">
-                            <span>TypeScript</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">TypeScript</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="tech-logo">
-                            <span>JavaScript</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">JavaScript</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/google/4285F4" alt="Gemini API" class="tech-logo">
-                            <span>Gemini API</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/google/4285F4" alt="Gemini API" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Gemini API</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="TailwindCSS"
-                                class="tech-logo">
-                            <span>TailwindCSS</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="TailwindCSS" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">TailwindCSS</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Backend -->
-                <div class="tech-category">
-                    <h3 class="category-title">Backend</h3>
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js" class="tech-logo">
-                            <span>Node.js</span>
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
+                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Backend</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Node.js</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/express/000000" alt="Express" class="tech-logo">
-                            <span>Express</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/express/000000" alt="Express" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Express</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Database -->
-                <div class="tech-category">
-                    <h3 class="category-title">Database</h3>
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="Supabase" class="tech-logo">
-                            <span>Supabase</span>
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
+                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Database</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="Supabase" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Supabase</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tools -->
-                <div class="tech-category">
-                    <h3 class="category-title">Tools</h3>
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png"
-                                alt="VSCode" class="tech-logo">
-                            <span>VSCode</span>
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
+                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Tools</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png" alt="VSCode" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">VSCode</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" class="tech-logo">
-                            <span>GitHub</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">GitHub</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman" class="tech-logo">
-                            <span>Postman</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Postman</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" class="tech-logo">
-                            <span>Figma</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">Figma</span>
                         </div>
-                        <div class="tech-card">
-                            <img src="https://avatars.githubusercontent.com/u/35137722?s=200&v=4" alt="SweetAlert"
-                                class="tech-logo">
-                            <span>SweetAlert</span>
+                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
+                            <img src="https://avatars.githubusercontent.com/u/35137722?s=200&v=4" alt="SweetAlert" class="w-12 h-12 mb-2">
+                            <span class="text-sm font-medium">SweetAlert</span>
                         </div>
                     </div>
                 </div>
@@ -162,27 +257,29 @@
     </section>
 
     <!-- Concept / Innovation -->
-    <section class="section concept-section">
-        <div class="container">
-            <h2 class="section-title">แนวคิดและนวัตกรรม</h2>
-            <div class="concept-box mint-border">
-                <div class="concept-list">
-                    <div class="concept-item">
-                        <div class="concept-number">1</div>
-                        <div class="concept-text">
-                            <strong>Chatbot ให้คำปรึกษาเบื้องต้นด้านสุขภาพจิต</strong>
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">แนวคิดและนวัตกรรม</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white border-4 border-mint-300 rounded-3xl p-8 shadow-lg">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                            <div class="pt-2">
+                                <strong class="text-lg text-gray-800">Chatbot ให้คำปรึกษาเบื้องต้นด้านสุขภาพจิต</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="concept-item">
-                        <div class="concept-number">2</div>
-                        <div class="concept-text">
-                            <strong>ทำแบบทดสอบคัดกรองความเสี่ยงภาวะซึมเศร้าได้</strong>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                            <div class="pt-2">
+                                <strong class="text-lg text-gray-800">ทำแบบทดสอบคัดกรองความเสี่ยงภาวะซึมเศร้าได้</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="concept-item">
-                        <div class="concept-number">3</div>
-                        <div class="concept-text">
-                            <strong>เชื่อมต่อกับสายด่วนกรมสุขภาพจิต 1323</strong>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                            <div class="pt-2">
+                                <strong class="text-lg text-gray-800">เชื่อมต่อกับสายด่วนกรมสุขภาพจิต 1323</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,85 +288,218 @@
     </section>
 
     <!-- Achievements Section -->
-    <section class="section achievements-section">
-        <div class="container">
-            <h2 class="section-title">ภาพประวัติการนำผลงานไปแข่งขัน</h2>
-            <div class="gallery-grid">
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878606.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">ภาพประวัติการนำผลงานไปแข่งขัน</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878606.jpg')">
+                    <img src="assets/S__25878606.jpg" class="mockup-image" alt="Achievement 1">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878605.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878605.jpg')">
+                    <img src="assets/S__25878605.jpg" class="mockup-image" alt="Achievement 2">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878604.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878604.jpg')">
+                    <img src="assets/S__25878604.jpg" class="mockup-image" alt="Achievement 3">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878603.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878603.jpg')">
+                    <img src="assets/S__25878603.jpg" class="mockup-image" alt="Achievement 4">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878598.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878598.jpg')">
+                    <img src="assets/S__25878598.jpg" class="mockup-image" alt="Achievement 5">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/S__25878563.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878563.jpg')">
+                    <img src="assets/S__25878563.jpg" class="mockup-image" alt="Achievement 6">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/1.jpg" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/1.jpg')">
+                    <img src="assets/1.jpg" class="mockup-image" alt="Achievement 7">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Project Gallery -->
-    <section class="section project-gallery-section">
-        <div class="container">
-            <h2 class="section-title">รูปผลงาน</h2>
-            <div class="gallery-grid">
-                <div class="">
-                    <div class="">
-                        <img src="assets/lily/4.png" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">รูปผลงาน</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/4.png')">
+                    <img src="assets/lily/4.png" class="mockup-image" alt="Project 1">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/lily/1_.png" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/1_.png')">
+                    <img src="assets/lily/1_.png" class="mockup-image" alt="Project 2">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/lily/2.png" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/2.png')">
+                    <img src="assets/lily/2.png" class="mockup-image" alt="Project 3">
                 </div>
-                <div class="">
-                    <div class="">
-                        <img src="assets/lily/3.png" class="mockup-image" style="border-radius: 20px;" alt="">
-                    </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/3.png')">
+                    <img src="assets/lily/3.png" class="mockup-image" alt="Project 4">
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- Donate Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-br from-mint-50 via-white to-mint-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">สนับสนุนโครงการ</h2>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                หากคุณต้องการสนับสนุนการพัฒนา Lily Chatbot ให้ดียิ่งขึ้น
+            </p>
+            <button id="donateBtn" class="bg-gradient-to-r from-mint-300 to-mint-400 hover:from-mint-400 hover:to-mint-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                บริจาคสนับสนุน
+            </button>
+        </div>
+    </section>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="modal">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-content bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
+                <button class="close absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-4xl leading-none transition-colors">&times;</button>
+                
+                <h2 class="text-2xl md:text-3xl font-bold text-mint-300 mb-2 text-center">สนับสนุนโครงการ</h2>
+                <p class="text-center text-xl font-semibold text-mint-400 mb-6">Lily Chatbot</p>
+                
+                <div class="flex flex-col items-center gap-6">
+                    <div class="bg-white p-5 rounded-2xl shadow-lg">
+                        <img id="qrCodeImage" src="assets/qrcode.JPG" alt="PromptPay QR Code" class="w-64 h-auto">
+                    </div>
+                    
+                    <div class="text-center w-full">
+                        <p class="font-semibold text-gray-700 mb-2">สแกน QR Code </p>
+                        <hr>
+                        <p class="font-semibold text-gray-700 mb-2 mt-2">หรือ </p>
+                        <div class="bg-gray-50 rounded-2xl p-4 mt-4">
+                            <p class="text-sm text-gray-500">
+                                <strong class="text-gray-700">เลขที่บัญชี</strong>
+                            </p>
+                            <p class="text-xl font-bold text-gray-800 my-2">170-3-37417-0 <br> ธนาคารกสิกรไทย</p>
+                            <p class="text-sm text-gray-500 mt-3">
+                                <strong class="text-gray-700">ชื่อบัญชี</strong>
+                            </p>
+                            <p class="text-gray-800 font-medium">พงศกร ทองรักษ์</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm text-gray-400 mt-6">
+                    ทุกการสนับสนุนจะนำไปใช้ในการพัฒนาและปรับปรุงระบบให้ดียิ่งขึ้น<br>ขอบคุณครับ 🙏
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>Created by Phongsakorn Thongrak SAMUTSAKHON TECHNICAL COLLEGE</p>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg">Created by <span class="font-semibold text-mint-300">Phongsakorn Thongrak</span></p>
+            <p class="text-gray-400 mt-2">SAMUTSAKHON TECHNICAL COLLEGE</p>
         </div>
     </footer>
+
+    <script>
+        // Donate Modal functionality
+        const modal = document.getElementById('donateModal');
+        const btn = document.getElementById('donateBtn');
+        const span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = function() {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        span.onclick = function() {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const imageCounter = document.getElementById('imageCounter');
+        
+        // Array of all gallery images
+        const galleryImages = [
+            'assets/S__25878606.jpg',
+            'assets/S__25878605.jpg',
+            'assets/S__25878604.jpg',
+            'assets/S__25878603.jpg',
+            'assets/S__25878598.jpg',
+            'assets/S__25878563.jpg',
+            'assets/1.jpg',
+            'assets/lily/4.png',
+            'assets/lily/1_.png',
+            'assets/lily/2.png',
+            'assets/lily/3.png'
+        ];
+        
+        let currentImageIndex = 0;
+
+        function openLightbox(imageSrc) {
+            currentImageIndex = galleryImages.indexOf(imageSrc);
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            updateCounter();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            // Loop around if at the end or beginning
+            if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            }
+            
+            lightboxImg.src = galleryImages[currentImageIndex];
+            updateCounter();
+        }
+
+        function updateCounter() {
+            imageCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        // Close lightbox when clicking on background
+        lightbox.addEventListener('click', function(event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(event) {
+            if (lightbox.classList.contains('show')) {
+                if (event.key === 'Escape') {
+                    closeLightbox();
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    </script>
 
 </body>
 
