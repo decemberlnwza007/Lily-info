@@ -13,7 +13,7 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -42,24 +42,24 @@
             .mockup-image {
                 @apply w-full h-full object-cover;
             }
-            
+
             .modal {
                 @apply fixed inset-0 z-[1000] overflow-auto;
                 background-color: rgba(0, 0, 0, 0.6);
                 backdrop-filter: blur(5px);
                 display: none;
             }
-            
+
             .modal.show {
                 display: block;
                 animation: fadeIn 0.3s ease;
             }
-            
+
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
             }
-            
+
             @keyframes slideUp {
                 from {
                     transform: translateY(50px);
@@ -70,27 +70,27 @@
                     opacity: 1;
                 }
             }
-            
+
             .modal-content {
                 animation: slideUp 0.3s ease;
             }
-            
+
             .lightbox {
-                @apply fixed inset-0 z-[2000] overflow-hidden;
+                @apply fixed inset-0 z-[2000] overflow-hidden items-center justify-center;
                 background-color: rgba(0, 0, 0, 0.95);
                 display: none;
             }
-            
+
             .lightbox.show {
                 display: flex;
                 animation: fadeIn 0.3s ease;
             }
-            
+
             .lightbox-image {
                 @apply max-w-full max-h-full object-contain;
                 animation: zoomIn 0.3s ease;
             }
-            
+
             @keyframes zoomIn {
                 from {
                     transform: scale(0.8);
@@ -101,15 +101,20 @@
                     opacity: 1;
                 }
             }
-            
+
             .gallery-item {
                 @apply cursor-pointer;
+            }
+
+            /* simple card utility */
+            .card {
+                @apply bg-white rounded-2xl p-6 shadow-md;
             }
         }
     </style>
 </head>
 
-<body class="font-prompt bg-gray-50">
+<body class="font-prompt bg-gray-50 text-gray-800 leading-relaxed">
 
     <!-- Hero Section -->
     <header class="relative bg-gradient-to-br from-mint-300 via-mint-400 to-mint-500 text-white py-20 overflow-hidden">
@@ -117,181 +122,304 @@
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full"></div>
             <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-white rounded-full"></div>
         </div>
-        
+
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Lily Chatbot</h1>
-                <p class="text-2xl md:text-3xl font-light mb-12">พื้นที่ปลอดภัยสำหรับทุกความรู้สึก</p>
-                <div class="max-w-md mx-auto">
-                    <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-4 shadow-2xl">
-                        <img src="./assets/Gemini_Generated_Image_bn2otcbn2otcbn2o.png" alt="Mockup" class="w-full h-auto rounded-2xl">
-                    </div>
+                <p class="text-2xl md:text-3xl font-light mb-6">พื้นที่ปลอดภัยสำหรับทุกความรู้สึก</p>
+                <p class="max-w-2xl mx-auto text-base md:text-lg opacity-95">Lily คือ Chatbot ให้คำปรึกษาเบื้องต้นด้านสุขภาพจิตที่ออกแบบมาให้เข้าถึงง่าย ปลอดภัย และเป็นมิตร</p>
+
+                <div class="mt-8 flex items-center justify-center gap-4">
+                    <a href="#features" class="inline-block bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">ดูฟีเจอร์</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Project Origin & Importance -->
-    <section class="py-16 md:py-20">
+    <section id="about" class="py-16 md:py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">ที่มาและความสำคัญ</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">ที่มาและความสำคัญ</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="bg-gradient-to-r from-mint-100 to-mint-200 rounded-3xl p-8 md:p-10 shadow-lg">
                     <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                        ภาวะซึมเศร้าเป็นปัญหาสุขภาพจิตระดับโลกกระทบผู้คนกว่า 280 ล้านคน
-                        แต่หลายคนยังขาดช่องทางการเข้าถึงคำปรึกษาและความช่วยเหลือที่สะดวก ปลอดภัย และทันท่วงที
+                        ภาวะซึมเศร้าและปัญหาสุขภาพจิตเป็นเรื่องใกล้ตัว แต่หลายคนยังไม่กล้าขอความช่วยเหลือ
+                        Lily ถูกสร้างขึ้นเพื่อลดช่องว่างในการเข้าถึงคำแนะนำเบื้องต้นและเป็นจุดเริ่มต้นให้ผู้ใช้หาแหล่งช่วยเหลือจริงเมื่อจำเป็น
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Expected Benefits -->
-    <section class="py-16 md:py-20 bg-white">
+    <!-- Project Goal + Target Users -->
+    <section id="goal" class="py-12 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">ประโยชน์ที่คาดว่าจะได้รับ</h2>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
-                    <p class="text-gray-700 text-lg">เข้าถึงข้อมูลสุขภาพจิตสะดวก รวดเร็ว</p>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-mint-400 mb-4">เป้าหมายของโปรเจกต์</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <li>สร้างพื้นที่ปลอดภัยสำหรับการระบายอารมณ์</li>
+                        <li>ให้คำแนะนำเบื้องต้นที่เข้าใจง่ายและเป็นมิตร</li>
+                        <li>คัดกรองความเสี่ยงและเชื่อมต่อไปยังบริการฉุกเฉินเมื่อต้องการ</li>
+                    </ul>
                 </div>
-                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
-                    <p class="text-gray-700 text-lg">ลดความรู้สึกโดดเดี่ยวของผู้ใช้งาน</p>
-                </div>
-                <div class="bg-gradient-to-br from-mint-50 to-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-mint-300 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">✔</div>
-                    <p class="text-gray-700 text-lg">เชื่อมต่อผู้เชี่ยวชาญได้ทันทีในภาวะวิกฤต กับสายด่วน 1323</p>
+                <div>
+                    <h3 class="text-2xl font-bold text-mint-400 mb-4">กลุ่มเป้าหมาย</h3>
+                    <div class="space-y-2 text-gray-700">
+                        <p>นักเรียน / นักศึกษา, คนวัยทำงานที่มีความเครียด, ผู้ที่ไม่สะดวกพูดคุยกับคนจริง, ผู้ที่ต้องการตรวจเช็กอาการเบื้องต้น</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technologies Used -->
+    <!-- Features -->
+    <section id="features" class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">ฟีเจอร์หลัก</h2>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card">
+                    <h4 class="text-xl font-semibold text-mint-400 mb-3">Chatbot ให้คำปรึกษา</h4>
+                    <p class="text-gray-700 mb-3">พูดคุยได้ตลอด 24 ชั่วโมง ตอบด้วยน้ำเสียงเป็นมิตร ให้คำแนะนำผ่อนคลาย และสรุปแนวทางการดูแลตัวเอง</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>ตอบกลับแบบ human-like</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-xl font-semibold text-mint-400 mb-3">แบบประเมินที่อ้างอิงจากกรมสุขภาพจิต</h4>
+                    <p class="text-gray-700 mb-3">แบบทดสอบคัดกรองซึมเศร้า พร้อมวิเคราะห์ผลและแนะนำแนวทางที่เหมาะสม</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>2q</li>
+                        <li>9q</li>
+                        <li>8q</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-xl font-semibold text-mint-400 mb-3">Emergency Mode</h4>
+                    <p class="text-gray-700 mb-3">เมื่อระบบประเมินว่ามีความเสี่ยงสูงจะแสดงข้อมูลติดต่อฉุกเฉินทันที</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>สายด่วนกรมสุขภาพจิต 1323</li>
+                        <li>ปุ่มโทรด่วนและคำแนะนำทันที</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card">
+                    <h4 class="text-xl font-semibold text-mint-400 mb-3">การทำแบบประเมิน</h4>
+                    <p class="text-gray-700">เมื่อทำแบบประเมินสำเร็จจะส่งค่าแบบประเมินให้ Ai วิเคราะห์อาการของผู้ใช้</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Flow -->
+    <section id="flow" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">Flow การทำงานของระบบ</h2>
+            <div class="max-w-4xl mx-auto">
+                <!-- Simple flow graphic using HTML/CSS -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-mint-50 to-white shadow">ผู้ใช้เริ่มต้น</div>
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-mint-50 to-white shadow">ทำแบบทดสอบ / คุยกับ Lily  </div>
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-mint-50 to-white shadow">การวิเคราะห์ผล</div>
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-mint-50 to-white shadow">แสดงคำแนะนำ / เชื่อมต่อสายด่วน</div>
+                </div>
+                <!-- <p class="mt-6 text-gray-600">(แนะนำให้ทำเป็น SVG หรือภาพไดอะแกรมสำหรับเวอร์ชันพิมพ์หรือพรีเซนต์)</p> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+<section id="techstack" class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
+            Tech Stack ที่ใช้ในการพัฒนา
+        </h2>
+
+        <div class="max-w-5xl mx-auto space-y-12">
+
+            <!-- Frontend -->
+            <div>
+                <h3 class="text-2xl font-semibold text-mint-400 mb-4">Frontend</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">Next.js</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png"
+                             class="w-auto h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">TailwindCSS</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/1200px-Google_Gemini_logo.svg.png"
+                             class="w-auto h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">Gemini API</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Backend -->
+            <div>
+                <h3 class="text-2xl font-semibold text-mint-400 mb-4">Backend</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">Node.js</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                             class="w-12 h-12 mx-auto opacity-80 mb-2" />
+                        <p class="font-medium text-gray-700">Express</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div>
+                <h3 class="text-2xl font-semibold text-mint-400 mb-4">Database</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">Supabase</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div>
+                <h3 class="text-2xl font-semibold text-mint-400 mb-4">Tools</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">VS Code</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">Figma</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                             class="w-12 h-12 mx-auto mb-2" />
+                        <p class="font-medium text-gray-700">GitHub</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    
+
+    <!-- UI Showcase / Gallery -->
+    <section id="showcase" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">รูปตัวอย่างระบบ / UI Showcase</h2>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-2xl shadow-lg gallery-item" onclick="openLightbox('assets/lily/1_.png')"><img src="assets/lily/1_.png" alt="ui1" class="mockup-image"></div>
+                <div class="overflow-hidden rounded-2xl shadow-lg gallery-item" onclick="openLightbox('assets/lily/2.png')"><img src="assets/lily/2.png" alt="ui2" class="mockup-image"></div>
+                <div class="overflow-hidden rounded-2xl shadow-lg gallery-item" onclick="openLightbox('assets/lily/3.png')"><img src="assets/lily/3.png" alt="ui3" class="mockup-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expected Outcomes -->
+    <section id="outcome" class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">ผลลัพธ์ที่คาดหวัง</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card text-center">
+                    <div class="text-3xl font-bold text-mint-400 mb-3">เข้าถึงง่าย</div>
+                    <p class="text-gray-700">ผู้ใช้สามารถค้นหาความช่วยเหลือได้อย่างรวดเร็ว</p>
+                </div>
+
+                <div class="card text-center">
+                    <div class="text-3xl font-bold text-mint-400 mb-3">ลดความโดดเดี่ยว</div>
+                    <p class="text-gray-700">ช่วยให้ผู้ใช้รู้สึกมีคนฟังและมีแนวทาง</p>
+                </div>
+
+                <div class="card text-center">
+                    <div class="text-3xl font-bold text-mint-400 mb-3">เชื่อมต่อผู้เชี่ยวชาญ</div>
+                    <p class="text-gray-700">ในกรณีฉุกเฉินสามารถเข้าถึงบริการจริงได้ทันที</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    
+
+    <!-- Privacy & Ethics -->
+    <section id="privacy" class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">นโยบายความเป็นส่วนตัว & จริยธรรม</h2>
+            <div class="max-w-4xl mx-auto card">
+                <h4 class="text-xl font-semibold mb-3">หลักการสำคัญ</h4>
+                <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                    <li>เก็บข้อมูลเฉพาะที่จำเป็นและเก็บเป็นแบบไม่ระบุตัวตนเมื่อเป็นไปได้</li>
+                    <li>ไม่เปิดเผยข้อมูลให้บุคคลภายนอก โดยไม่ได้รับอนุญาต</li>
+                    <li>ระบบไม่ได้มีจุดประสงค์เพื่อทดแทนการรักษาจากผู้เชี่ยวชาญทางการแพทย์</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap / Future -->
+
+
+    <!-- Contact & Donate -->
+    
+
+    <!-- FAQ -->
+    <section id="faq" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">คำถามที่พบบ่อย</h2>
+            <div class="max-w-4xl mx-auto space-y-4">
+                <details class="card">
+                    <summary class="font-semibold">Lily แทนที่ผู้เชี่ยวชาญได้ไหม?</summary>
+                    <p class="mt-3 text-gray-700">ไม่ได้ค่ะ Lily ให้คำแนะนำเบื้องต้นเท่านั้น หากมีความเสี่ยงสูงระบบจะแนะนำให้ติดต่อผู้เชี่ยวชาญ</p>
+                </details>
+
+                <details class="card">
+                    <summary class="font-semibold">ข้อมูลของฉันปลอดภัยไหม?</summary>
+                    <p class="mt-3 text-gray-700">เราจะเก็บข้อมูลเฉพาะที่จำเป็นและใช้มาตรการเข้ารหัสเพื่อปกป้องข้อมูล</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Project Gallery (original content) -->
     <section class="py-16 md:py-20 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">เทคโนโลยีที่ใช้</h2>
-            
-            <div class="max-w-6xl mx-auto space-y-8">
-                <!-- Frontend -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
-                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Frontend</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Next.js</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">TypeScript</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">JavaScript</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/google/4285F4" alt="Gemini API" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Gemini API</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="TailwindCSS" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">TailwindCSS</span>
-                        </div>
-                    </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">ผลงานและภาพประกอบ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/1.jpg')">
+                    <img src="assets/1.jpg" class="mockup-image" alt="Achievement 0">
                 </div>
-
-                <!-- Backend -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
-                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Backend</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Node.js</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/express/000000" alt="Express" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Express</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Database -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
-                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Database</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt="Supabase" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Supabase</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md">
-                    <h3 class="text-2xl font-semibold text-mint-400 mb-6">Tools</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png" alt="VSCode" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">VSCode</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">GitHub</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Postman</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">Figma</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-mint-50 transition-colors">
-                            <img src="https://avatars.githubusercontent.com/u/35137722?s=200&v=4" alt="SweetAlert" class="w-12 h-12 mb-2">
-                            <span class="text-sm font-medium">SweetAlert</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Concept / Innovation -->
-    <section class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">แนวคิดและนวัตกรรม</h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-white border-4 border-mint-300 rounded-3xl p-8 shadow-lg">
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
-                            <div class="pt-2">
-                                <strong class="text-lg text-gray-800">Chatbot ให้คำปรึกษาเบื้องต้นด้านสุขภาพจิต</strong>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
-                            <div class="pt-2">
-                                <strong class="text-lg text-gray-800">ทำแบบทดสอบคัดกรองความเสี่ยงภาวะซึมเศร้าได้</strong>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-mint-300 to-mint-400 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
-                            <div class="pt-2">
-                                <strong class="text-lg text-gray-800">เชื่อมต่อกับสายด่วนกรมสุขภาพจิต 1323</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section class="py-16 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">ภาพประวัติการนำผลงานไปแข่งขัน</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878606.jpg')">
                     <img src="assets/S__25878606.jpg" class="mockup-image" alt="Achievement 1">
                 </div>
@@ -304,126 +432,131 @@
                 <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878603.jpg')">
                     <img src="assets/S__25878603.jpg" class="mockup-image" alt="Achievement 4">
                 </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878598.jpg')">
-                    <img src="assets/S__25878598.jpg" class="mockup-image" alt="Achievement 5">
-                </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/S__25878563.jpg')">
-                    <img src="assets/S__25878563.jpg" class="mockup-image" alt="Achievement 6">
-                </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/1.jpg')">
-                    <img src="assets/1.jpg" class="mockup-image" alt="Achievement 7">
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Gallery -->
-    <section class="py-16 md:py-20 bg-white">
+    <section id="team" class="py-16 md:py-20 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">รูปผลงาน</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/4.png')">
-                    <img src="assets/lily/4.png" class="mockup-image" alt="Project 1">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">ทีมพัฒนา</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="card">
+                    <img src="assets/team/phongsakorn.jpg" alt="phongsakorn" class="w-28 h-28 rounded-full mx-auto object-cover mb-3">
+                    <h4 class="font-semibold">นายพงศกร ทองรักษ์</h4>
+                    <!-- <p class="text-sm text-gray-600"></p> -->
                 </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/1_.png')">
-                    <img src="assets/lily/1_.png" class="mockup-image" alt="Project 2">
+                <div class="card">
+                    <img src="assets/team/membersample.jpg" alt="member" class="w-28 h-28 rounded-full mx-auto object-cover mb-3">
+                    <h4 class="font-semibold">นายภัทรพล หินประกอบ</h4>
+                    <!-- <p class="text-sm text-gray-600">Backend / DevOps</p> -->
                 </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/2.png')">
-                    <img src="assets/lily/2.png" class="mockup-image" alt="Project 3">
-                </div>
-                <div class="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 gallery-item" onclick="openLightbox('assets/lily/3.png')">
-                    <img src="assets/lily/3.png" class="mockup-image" alt="Project 4">
+                <div class="card">
+                    <img src="assets/team/membersample2.jpg" alt="member2" class="w-28 h-28 rounded-full mx-auto object-cover mb-3">
+                    <h4 class="font-semibold">นายภาณุพงศ์ สุริยันต์</h4>
+                    <!-- <p class="text-sm text-gray-600">AI Research / Content</p> -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Donate Section -->
-    <section class="py-16 md:py-20 bg-gradient-to-br from-mint-50 via-white to-mint-50">
+    <!-- Lightbox Markup (fixed & reusable) -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+        <button id="lightboxClose" class="absolute top-6 right-6 text-white text-4xl leading-none">&times;</button>
+        <button id="lightboxPrev" class="absolute left-6 text-white text-3xl leading-none">&#10094;</button>
+        <img id="lightboxImg" src="" alt="" class="lightbox-image mx-auto rounded-lg shadow-2xl">
+        <button id="lightboxNext" class="absolute right-6 text-white text-3xl leading-none">&#10095;</button>
+        <div id="imageCounter" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white bg-black/40 px-3 py-1 rounded-full text-sm"></div>
+    </div>
+
+    <section id="contact" class="py-16 md:py-20 bg-gradient-to-br from-mint-50 via-white to-mint-50">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">สนับสนุนโครงการ</h2>
-            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                หากคุณต้องการสนับสนุนการพัฒนา Lily Chatbot ให้ดียิ่งขึ้น
-            </p>
-            <button id="donateBtn" class="bg-gradient-to-r from-mint-300 to-mint-400 hover:from-mint-400 hover:to-mint-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                บริจาคสนับสนุน
-            </button>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">ติดต่อเรา / สนับสนุนโครงการ</h2>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-6">หากต้องการติดต่อเพื่อร่วมมือ หรือต้องการสนับสนุน สามารถติดต่อได้ตามช่องทางด้านล่าง</p>
+
+            
+            <div class="mt-8">
+                <button id="donateBtn2" class="bg-gradient-to-r from-mint-300 to-mint-400 hover:from-mint-400 hover:to-mint-500 text-white font-bold py-3 px-8 rounded-full">บริจาคสนับสนุน</button>
+            </div>
         </div>
     </section>
 
-    <!-- Donate Modal -->
-    <div id="donateModal" class="modal">
+    <!-- Donate Modal (reuse) -->
+    <div id="donateModal2" class="modal" aria-hidden="true">
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="modal-content bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
-                <button class="close absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-4xl leading-none transition-colors">&times;</button>
-                
+                <button class="close2 absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-4xl leading-none transition-colors">&times;</button>
                 <h2 class="text-2xl md:text-3xl font-bold text-mint-300 mb-2 text-center">สนับสนุนโครงการ</h2>
                 <p class="text-center text-xl font-semibold text-mint-400 mb-6">Lily Chatbot</p>
-                
                 <div class="flex flex-col items-center gap-6">
                     <div class="bg-white p-5 rounded-2xl shadow-lg">
-                        <img id="qrCodeImage" src="assets/qrcode.JPG" alt="PromptPay QR Code" class="w-64 h-auto">
+                        <img id="qrCodeImage2" src="assets/qrcode.JPG" alt="PromptPay QR Code" class="w-64 h-auto">
                     </div>
-                    
                     <div class="text-center w-full">
-                        <p class="font-semibold text-gray-700 mb-2">สแกน QR Code </p>
-                        <hr>
-                        <p class="font-semibold text-gray-700 mb-2 mt-2">หรือ </p>
-                        <div class="bg-gray-50 rounded-2xl p-4 mt-4">
-                            <p class="text-sm text-gray-500">
-                                <strong class="text-gray-700">เลขที่บัญชี</strong>
-                            </p>
+                        <p class="font-semibold text-gray-700 mb-2">สแกน QR Code หรือโอนบัญชี</p>
+                        <div class="bg-gray-50 rounded-2xl p-4 mt-2">
+                            <p class="text-sm text-gray-500"><strong class="text-gray-700">เลขที่บัญชี</strong></p>
                             <p class="text-xl font-bold text-gray-800 my-2">170-3-37417-0 <br> ธนาคารกสิกรไทย</p>
-                            <p class="text-sm text-gray-500 mt-3">
-                                <strong class="text-gray-700">ชื่อบัญชี</strong>
-                            </p>
+                            <p class="text-sm text-gray-500 mt-3"><strong class="text-gray-700">ชื่อบัญชี</strong></p>
                             <p class="text-gray-800 font-medium">พงศกร ทองรักษ์</p>
+                            <p class="text-gray-800 font-medium">โดยยอดที่ได้จะนำไปพัฒนาและปรับปรุงแก้ไขต่อไป</p>
                         </div>
                     </div>
                 </div>
-                
-                <p class="text-center text-sm text-gray-400 mt-6">
-                    ทุกการสนับสนุนจะนำไปใช้ในการพัฒนาและปรับปรุงระบบให้ดียิ่งขึ้น<br>ขอบคุณครับ 🙏
-                </p>
+                <p class="text-center text-sm text-gray-400 mt-6">ขอบคุณที่สนับสนุนครับ</p>
             </div>
         </div>
     </div>
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <p class="text-lg">Created by <span class="font-semibold text-mint-300">Phongsakorn Thongrak</span></p>
             <p class="text-gray-400 mt-2">SAMUTSAKHON TECHNICAL COLLEGE</p>
+            <div class="mt-4 space-x-3 text-sm text-gray-400">
+                <a href="#privacy">นโยบายความเป็นส่วนตัว</a>
+                <a href="#contact">ติดต่อ</a>
+                <a href="#faq">คำถามที่พบบ่อย</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Donate Modal functionality
-        const modal = document.getElementById('donateModal');
-        const btn = document.getElementById('donateBtn');
-        const span = document.getElementsByClassName('close')[0];
+        // Donate Modal functionality (main)
+        const donateBtn1 = document.getElementById('donateBtn');
+        const donateBtn2 = document.getElementById('donateBtn2');
+        const donateModal = document.getElementById('donateModal'); // if original exists
+        const donateModal2 = document.getElementById('donateModal2');
+        const close2 = document.getElementsByClassName('close2')[0];
 
-        btn.onclick = function() {
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
+        if (donateBtn1) donateBtn1.addEventListener('click', openDonate);
+        if (donateBtn2) donateBtn2.addEventListener('click', openDonate);
+        if (close2) close2.addEventListener('click', closeDonate);
+
+        function openDonate() {
+            if (donateModal2) {
+                donateModal2.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        span.onclick = function() {
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.classList.remove('show');
+        function closeDonate() {
+            if (donateModal2) {
+                donateModal2.classList.remove('show');
                 document.body.style.overflow = 'auto';
             }
         }
 
+        // close on background click
+        window.addEventListener('click', function(e) {
+            if (e.target === donateModal2) closeDonate();
+        });
+
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('show')) {
-                modal.classList.remove('show');
-                document.body.style.overflow = 'auto';
+            if (event.key === 'Escape') {
+                closeDonate();
+                closeLightbox();
             }
         });
 
@@ -431,8 +564,10 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const imageCounter = document.getElementById('imageCounter');
-        
-        // Array of all gallery images
+        const lbClose = document.getElementById('lightboxClose');
+        const lbNext = document.getElementById('lightboxNext');
+        const lbPrev = document.getElementById('lightboxPrev');
+
         const galleryImages = [
             'assets/S__25878606.jpg',
             'assets/S__25878605.jpg',
@@ -444,61 +579,61 @@
             'assets/lily/4.png',
             'assets/lily/1_.png',
             'assets/lily/2.png',
-            'assets/lily/3.png'
+            'assets/lily/3.png',
+            'assets/lily/1_.png',
+            'assets/lily/2.png'
         ];
-        
+
         let currentImageIndex = 0;
 
         function openLightbox(imageSrc) {
-            currentImageIndex = galleryImages.indexOf(imageSrc);
-            lightboxImg.src = imageSrc;
+            const idx = galleryImages.indexOf(imageSrc);
+            currentImageIndex = idx >= 0 ? idx : 0;
+            lightboxImg.src = galleryImages[currentImageIndex];
             lightbox.classList.add('show');
             document.body.style.overflow = 'hidden';
             updateCounter();
         }
 
         function closeLightbox() {
-            lightbox.classList.remove('show');
-            document.body.style.overflow = 'auto';
+            if (lightbox) {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function changeImage(direction) {
             currentImageIndex += direction;
-            
-            // Loop around if at the end or beginning
-            if (currentImageIndex >= galleryImages.length) {
-                currentImageIndex = 0;
-            } else if (currentImageIndex < 0) {
-                currentImageIndex = galleryImages.length - 1;
-            }
-            
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
             lightboxImg.src = galleryImages[currentImageIndex];
             updateCounter();
         }
 
         function updateCounter() {
-            imageCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+            if (imageCounter) imageCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
         }
 
-        // Close lightbox when clicking on background
-        lightbox.addEventListener('click', function(event) {
-            if (event.target === lightbox) {
-                closeLightbox();
+        // bind lightbox controls
+        if (lbClose) lbClose.addEventListener('click', closeLightbox);
+        if (lbNext) lbNext.addEventListener('click', () => changeImage(1));
+        if (lbPrev) lbPrev.addEventListener('click', () => changeImage(-1));
+
+        // close on background click
+        if (lightbox) {
+            lightbox.addEventListener('click', function(event) {
+                if (event.target === lightbox) closeLightbox();
+            });
+        }
+
+        // keyboard nav
+        document.addEventListener('keydown', function(event) {
+            if (lightbox.classList.contains('show')) {
+                if (event.key === 'ArrowLeft') changeImage(-1);
+                if (event.key === 'ArrowRight') changeImage(1);
             }
         });
 
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', function(event) {
-            if (lightbox.classList.contains('show')) {
-                if (event.key === 'Escape') {
-                    closeLightbox();
-                } else if (event.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (event.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
     </script>
 
 </body>
